@@ -25,7 +25,7 @@ jobs:
       - name: show java version
         run: java -version
       - name: show environment variables
-        run: echo ${{ env.aws_region_env.REGION }}
+        run: echo ${{ env.REGION }}
       - name: show secrets
         run: echo ${{ secrets.AWS_REGION }}
       - name: Set up Python ${{ matrix.python-version }}
