@@ -24,7 +24,9 @@ jobs:
         run: python --version
       - name: show java version
         run: java -version
-      - name: show environment variables
+      - name: show env variables
+        run: echo ${{ env.ENV_REGION }}
+      - name: show repo variables
         run: echo ${{ vars.REPO_REGION }}
       - name: show secrets
         run: echo ${{ secrets.AWS_REGION }}
