@@ -5,17 +5,15 @@ on:
     branches: [ $default-branch ]
 env:
   ENV_REGION: AAABBBCCC
-  DEPLOY_KEY: ${{secrets.aws_region_env.DEPLOY_KEY}}
-  DEPLOY_USER: ${{secrets.aws_region_env.DEPLOY_USER}}
-  DEPLOY_HOST_IP: ${{secrets.aws_region_env.DEPLOY_HOST_IP}}
 
 jobs:
   Explore-GitHub-Actions:
     runs-on: ubuntu-latest
+    environment: production
     strategy:
       fail-fast: false
       matrix:
-        python-version: [ "3.9", "3.10"]
+        python-version: [ "3.9",]
     steps:
       - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
       - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
@@ -59,5 +57,5 @@ jobs:
           chmod 600 ~/.ssh/id_rsa
           ls -l ~/.ssh
       - name: ssh to remote host
-        run: ssh $DEPLOY_USER@$DEPLOY_HOST_IP -i ~/.ssh/id_rsa date
+        run: ssh ${{secrets.DEPLOY_USER}}@${{secrets.DEPLOY_HOST_IP}} -i ~/.ssh/id_rsa date
           
