@@ -2,12 +2,12 @@ name: GitHub Actions Demo
 run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
 on:
   push:
-    branches: [ "main" ]
+    branches: [ $default-branch ]
 env:
   ENV_REGION: AAABBBCCC
-  DEPLOY_KEY: ${{secrets.DEPLOY_KEY}}
-  DEPLOY_USER: ${{secrets.DEPLOY_USER}}
-  DEPLOY_HOST_IP: ${{secrets.DEPLOY_HOST_IP}}
+  DEPLOY_KEY: ${{secrets.aws_region_env.DEPLOY_KEY}}
+  DEPLOY_USER: ${{secrets.aws_region_env.DEPLOY_USER}}
+  DEPLOY_HOST_IP: ${{secrets.aws_region_env.DEPLOY_HOST_IP}}
 
 jobs:
   Explore-GitHub-Actions:
