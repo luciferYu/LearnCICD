@@ -1,6 +1,7 @@
 name: GitHub Actions Demo
 run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
-on: [push]
+on:
+  push: [$default-branch]
 env:
   ENV_REGION: AAABBBCCC
 
