@@ -50,7 +50,7 @@ jobs:
       - name: insert ssh key
         run: |
           mkdir -p ~/.ssh
-          echo ${{secrets.DEPLOY_KEY}} > ~/.ssh/id_rsa
+          echo "${{secrets.DEPLOY_KEY}}" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
           ls -l ~/.ssh
       - name: ssh to remote host
