@@ -68,5 +68,5 @@ jobs:
       - name: copy code to remote host
         run: scp -r -i ~/.ssh/id_rsa ./* "${{secrets.DEPLOY_USER}}"@"${{secrets.DEPLOY_HOST_IP}}"\:/home/"${{secrets.DEPLOY_USER}}"/projects/$(echo "${{ github.repository }}"|awk -F '/' '{print $NF}')
       - name: run py program
-        run: ssh "${{secrets.DEPLOY_USER}}"@"${{secrets.DEPLOY_HOST_IP}}" -i ~/.ssh/id_rsa python3 /projects/$(echo "${{ github.repository }}"|awk -F '/' '{print $NF}')/main.py
+        run: ssh "${{secrets.DEPLOY_USER}}"@"${{secrets.DEPLOY_HOST_IP}}" -i ~/.ssh/id_rsa python3 /home/"${{secrets.DEPLOY_USER}}"/projects/$(echo "${{ github.repository }}"|awk -F '/' '{print $NF}')/main.py
 
