@@ -63,6 +63,6 @@ jobs:
       - name: ssh to remote host
         run: ssh "${{secrets.DEPLOY_USER}}"@"${{secrets.DEPLOY_HOST_IP}}" -i ~/.ssh/id_rsa date
       - name: copy code to remote host
-        run: scp -r -i ~/.ssh/id_rsa ./* "${{secrets.DEPLOY_USER}}"@"${{secrets.DEPLOY_HOST_IP}}"\:~/projects/"${{ github.repository }}"
+        run: scp -r -i ~/.ssh/id_rsa ./* "${{secrets.DEPLOY_USER}}"@"${{secrets.DEPLOY_HOST_IP}}"\:/home/"${{secrets.DEPLOY_USER}}"/projects/$(echo "${{ github.repository }}"|awk -F '/' '{print $NF}')
 
 
