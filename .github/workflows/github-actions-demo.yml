@@ -2,7 +2,7 @@ name: GitHub Actions Demo
 run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
 on: [push]
 env:
-  ENV_REGION: ${{ vars.ENV_REGION }}
+  ENV_REGION: AAABBBCCC
 jobs:
   Explore-GitHub-Actions:
     runs-on: ubuntu-latest
