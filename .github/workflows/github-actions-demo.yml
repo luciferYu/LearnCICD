@@ -24,6 +24,10 @@ jobs:
         run: python --version
       - name: show java version
         run: java -version
+      - name: show environment variables
+        run: echo ${{ env }}
+      - name: show secrets
+        run: echo ${{ secrets }}
       - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v3
         with:
@@ -32,3 +36,4 @@ jobs:
         run: |
             python -m pip install --upgrade pip
             if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+          
