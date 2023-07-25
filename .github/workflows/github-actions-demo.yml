@@ -51,8 +51,6 @@ jobs:
           mkdir -p ~/.ssh
           echo ${{secrets.DEPLOY_KEY}} > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
-#          ssh-keyscan -t rsa ${{ secrets.DEPLOY_HOST_IP }} >> ~/.ssh/known_hosts
-#          chmod 644 ~/.ssh/known_hosts
           chown -R $(whoami):$(whoami) ~/.ssh
       - name: ssh to remote host
         run: ssh ${{secrets.DEPLOY_USER}}@${{ secrets.DEPLOY_HOST_IP }} -i /home/${{secrets.DEPLOY_USER}}/.ssh/id_rsa date
