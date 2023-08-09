@@ -7,15 +7,10 @@ on:
       - 'branch-3'
 env:
   ENV_REGION: AAABBBCCC
-
 jobs:
   Explore-GitHub-Actions:
     runs-on: self-hosted
     environment: production
-#    strategy:
-#      fail-fast: false
-#      matrix:
-#        python-version: [ "3.9",]
     steps:
       - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
       - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
@@ -38,37 +33,9 @@ jobs:
         run: echo ${{ vars.REPO_REGION }}
       - name: show secrets
         run: echo ${{ secrets.AWS_REGION }}
-#      - name: Set up Python ${{ matrix.python-version }}
-#        uses: actions/setup-python@v3
-#        with:
-#          python-version: ${{ matrix.python-version }}
-#      - name: Install dependencies
-#        run: |
-#            python -m pip install --upgrade pip
-#            if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
       - name: pwd
         run: pwd
       - name: ls $(pwd)
         run: ls $(pwd)
       - name: whoami
         run: whoami
-#      - name: insert ssh key
-#        run: |
-#          mkdir -p ~/.ssh
-#          echo "${{secrets.DEPLOY_KEY}}" > ~/.ssh/id_rsa
-#          chmod 600 ~/.ssh/id_rsa
-#      - name: cat ssh key
-#        run: |
-#          cat ~/.ssh/id_rsa
-#      - name: add host to known_hosts
-#        run: |
-#          ssh-keyscan -t rsa "${{ secrets.DEPLOY_HOST_IP }}" >> ~/.ssh/known_hosts
-#          chmod 644 ~/.ssh/known_hosts
-#          ls -l ~/.ssh
-#      - name: ssh to remote host
-#        run: ssh "${{secrets.DEPLOY_USER}}"@"${{secrets.DEPLOY_HOST_IP}}" -i ~/.ssh/id_rsa date
-#      - name: copy code to remote host
-#        run: scp -r -i ~/.ssh/id_rsa ./* "${{secrets.DEPLOY_USER}}"@"${{secrets.DEPLOY_HOST_IP}}"\:/home/"${{secrets.DEPLOY_USER}}"/projects/$(echo "${{ github.repository }}"|awk -F '/' '{print $NF}')
-#      - name: run py program
-#        run: ssh "${{secrets.DEPLOY_USER}}"@"${{secrets.DEPLOY_HOST_IP}}" -i ~/.ssh/id_rsa python3 /home/"${{secrets.DEPLOY_USER}}"/projects/$(echo "${{ github.repository }}"|awk -F '/' '{print $NF}')/main.py
-
