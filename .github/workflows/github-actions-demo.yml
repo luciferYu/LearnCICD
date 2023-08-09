@@ -15,8 +15,7 @@ jobs:
       - name: Check out repository code
         uses: actions/checkout@v3
       - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
-      - run: echo "🖥️ The workflow is now ready to test your code on the runner."
-      - run: echo "action_ref {{ github.action_ref }} action_id {{ github.action_id }} github sha {{ github.sha }}"
+      - run: echo "action_ref ${{ github.action_ref }} action_id ${{ github.action_id }} github sha ${{ github.sha }}"
       - name: List files in the repository
         run: |
           ls ${{ github.workspace }}
