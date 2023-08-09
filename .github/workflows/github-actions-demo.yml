@@ -26,3 +26,6 @@ jobs:
         run: pwd
       - name: ls $(pwd)
         run: ls $(pwd)
+      - name: main.py
+        run: python3 main.py
+
