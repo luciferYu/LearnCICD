@@ -4,12 +4,13 @@ on:
   push:
     branches:
       - 'main'
+      - 'branch-3'
 env:
   ENV_REGION: AAABBBCCC
 
 jobs:
   Explore-GitHub-Actions:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     environment: production
     strategy:
       fail-fast: false
@@ -51,23 +52,23 @@ jobs:
         run: ls $(pwd)
       - name: whoami
         run: whoami
-      - name: insert ssh key
-        run: |
-          mkdir -p ~/.ssh
-          echo "${{secrets.DEPLOY_KEY}}" > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
-      - name: cat ssh key
-        run: |
-          cat ~/.ssh/id_rsa
-      - name: add host to known_hosts
-        run: |
-          ssh-keyscan -t rsa "${{ secrets.DEPLOY_HOST_IP }}" >> ~/.ssh/known_hosts
-          chmod 644 ~/.ssh/known_hosts
-          ls -l ~/.ssh
-      - name: ssh to remote host
-        run: ssh "${{secrets.DEPLOY_USER}}"@"${{secrets.DEPLOY_HOST_IP}}" -i ~/.ssh/id_rsa date
-      - name: copy code to remote host
-        run: scp -r -i ~/.ssh/id_rsa ./* "${{secrets.DEPLOY_USER}}"@"${{secrets.DEPLOY_HOST_IP}}"\:/home/"${{secrets.DEPLOY_USER}}"/projects/$(echo "${{ github.repository }}"|awk -F '/' '{print $NF}')
-      - name: run py program
-        run: ssh "${{secrets.DEPLOY_USER}}"@"${{secrets.DEPLOY_HOST_IP}}" -i ~/.ssh/id_rsa python3 /home/"${{secrets.DEPLOY_USER}}"/projects/$(echo "${{ github.repository }}"|awk -F '/' '{print $NF}')/main.py
+#      - name: insert ssh key
+#        run: |
+#          mkdir -p ~/.ssh
+#          echo "${{secrets.DEPLOY_KEY}}" > ~/.ssh/id_rsa
+#          chmod 600 ~/.ssh/id_rsa
+#      - name: cat ssh key
+#        run: |
+#          cat ~/.ssh/id_rsa
+#      - name: add host to known_hosts
+#        run: |
+#          ssh-keyscan -t rsa "${{ secrets.DEPLOY_HOST_IP }}" >> ~/.ssh/known_hosts
+#          chmod 644 ~/.ssh/known_hosts
+#          ls -l ~/.ssh
+#      - name: ssh to remote host
+#        run: ssh "${{secrets.DEPLOY_USER}}"@"${{secrets.DEPLOY_HOST_IP}}" -i ~/.ssh/id_rsa date
+#      - name: copy code to remote host
+#        run: scp -r -i ~/.ssh/id_rsa ./* "${{secrets.DEPLOY_USER}}"@"${{secrets.DEPLOY_HOST_IP}}"\:/home/"${{secrets.DEPLOY_USER}}"/projects/$(echo "${{ github.repository }}"|awk -F '/' '{print $NF}')
+#      - name: run py program
+#        run: ssh "${{secrets.DEPLOY_USER}}"@"${{secrets.DEPLOY_HOST_IP}}" -i ~/.ssh/id_rsa python3 /home/"${{secrets.DEPLOY_USER}}"/projects/$(echo "${{ github.repository }}"|awk -F '/' '{print $NF}')/main.py
 
