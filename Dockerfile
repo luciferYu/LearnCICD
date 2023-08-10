@@ -16,4 +16,4 @@ RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai  /etc/localtime && \
 
 
 EXPOSE ${PORT}
-ENTRYPOINT ["/app/entrypoint.sh", "0.0.0.0", "80" ]
+ENTRYPOINT ["python3", "/app/manage.py", "runserver", "0.0.0.0:80" ]
