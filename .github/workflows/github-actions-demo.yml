@@ -6,7 +6,7 @@ on:
       - 'main'
       - 'branch-**'
 env:
-  SHORT_SHA: $(echo ${{ github.sha:0:5 }})
+  SHORT_SHA: $(echo ${${{ github.sha }}:0:5})
 jobs:
   BRANCH-2-CICD:
     runs-on: self-hosted
