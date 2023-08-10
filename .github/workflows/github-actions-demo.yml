@@ -31,5 +31,7 @@ jobs:
       - name: docker run
         run: sudo docker run -d -p 3333:80 ${{ github.ref_name }}:${{ github.sha }}
       - name: curl web
-        run: curl http://localhost:3333
+        run: |
+          sleep 20
+          curl http://localhost:3333
 
