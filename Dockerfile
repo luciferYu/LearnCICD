@@ -6,7 +6,7 @@ ARG PORT=11111
 
 ADD . .
 
-RUN apk add  default-libmysqlclient-dev && \
+RUN apk add gcc && \
     ln -sf /usr/share/zoneinfo/Asia/Shanghai  /etc/localtime && \
     pip install --upgrade pip  && \
     pip install --no-cache-dir -r requirements.txt  && \
