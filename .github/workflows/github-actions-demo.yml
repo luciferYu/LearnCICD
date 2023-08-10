@@ -24,8 +24,8 @@ jobs:
         run: pwd
       - name: ls $(pwd)
         run: ls $(pwd)
-      - name: main.py
-        run: python3 main.py
-      - name: docker bulid --no-cache -t  ${{ github.ref_name }}:${{ github.sha }}  --build-arg IP=0.0.0.0 --build-arg PORT=3333
+      - name: docker build
+        run : sudo docker bulid --no-cache -t  ${{ github.ref_name }}:${{ github.sha }}  --build-arg IP=0.0.0.0 --build-arg PORT=3333
+      - name: docker images
         run: sudo docker images
 
