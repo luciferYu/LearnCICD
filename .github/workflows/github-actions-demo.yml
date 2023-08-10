@@ -5,11 +5,13 @@ on:
     branches:
       - 'main'
       - 'branch-**'
+  env:
+    SHORT_SHA: $(echo ${{ github.sha:0:5 }} )
 jobs:
   BRANCH-2-CICD:
     runs-on: self-hosted
     steps:
-      - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
+      - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event. ${{ SHORT_SHA }}"
       - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
       - run: echo "🔎 The name of your branch is ${{ github.ref }}|${{ github.ref_name }} and your repository is ${{ github.repository }}."
       - name: Check out repository code
@@ -28,6 +30,8 @@ jobs:
         run : sudo docker build --no-cache -t  ${{ github.ref_name }}:${{ github.sha }}  --build-arg IP=0.0.0.0 --build-arg PORT=80 .
       - name: docker images
         run: sudo docker images
-      - name: docker images
-        run: docker docker run -d -p 3333:80 ${{ github.ref_name }}:${{ github.sha }}
+      - name: docker run
+        run: docker run -d -p 3333:80 ${{ github.ref_name }}:${{ github.sha }}
+      - name: curl web
+        run: curl http://localhost:3333
 
