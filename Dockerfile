@@ -16,4 +16,4 @@ RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai  /etc/localtime && \
 
 
 EXPOSE ${PORT}
-ENTRYPOINT ["./entrypoint.sh", "${IP}", "${PORT}" ]
+ENTRYPOINT ["./entrypoint.sh", "0.0.0.0", "80" ]
