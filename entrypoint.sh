@@ -1,2 +1,2 @@
 #!/bin/bash
-python3 manage.py runserver ${1}:${2}
+python3 /app/manage.py runserver ${1}:${2}
