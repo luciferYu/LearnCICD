@@ -6,11 +6,11 @@ ARG PORT=11111
 
 ADD . .
 
-RUN apk add gcc && \
-    ln -sf /usr/share/zoneinfo/Asia/Shanghai  /etc/localtime && \
+RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai  /etc/localtime && \
     pip install --upgrade pip  && \
-    pip install --no-cache-dir -r requirements.txt  && \
+    pip install --no-cache-dir -i https://pypi.tuna.tsinghua.edu.cn/simple -r requirements.txt  && \
     pip cache purge
+    # apk add gcc
 
 
 
