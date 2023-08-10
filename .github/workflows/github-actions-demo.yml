@@ -1,4 +1,4 @@
-name: GitHub Actions Demo
+name: BRANCH-2 CICD
 run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
 on:
   push:
@@ -6,7 +6,7 @@ on:
       - 'main'
       - 'branch-**'
 jobs:
-  Explore-GitHub-Actions:
+  BRANCH-2-CICD:
     runs-on: self-hosted
     steps:
       - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
