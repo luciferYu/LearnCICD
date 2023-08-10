@@ -5,13 +5,11 @@ on:
     branches:
       - 'main'
       - 'branch-**'
-env:
-  SHORT_SHA: ${{ substring(github.sha,6) }}
 jobs:
   BRANCH-2-CICD:
     runs-on: self-hosted
     steps:
-      - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event. ${{ env.SHORT_SHA }}"
+      - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
       - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
       - run: echo "🔎 The name of your branch is ${{ github.ref }}|${{ github.ref_name }} and your repository is ${{ github.repository }}."
       - name: Check out repository code
