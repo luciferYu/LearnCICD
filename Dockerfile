@@ -10,6 +10,7 @@ RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai  /etc/localtime && \
     pip install --upgrade pip  && \
     pip install --no-cache-dir -i https://pypi.tuna.tsinghua.edu.cn/simple -r requirements.txt  && \
     pip cache purge && \
+    ls -l ./* && \
     chmod +x entrypoint.sh
     # apk add gcc
 
