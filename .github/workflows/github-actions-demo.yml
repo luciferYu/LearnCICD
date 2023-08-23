@@ -29,8 +29,10 @@ jobs:
       - name: test running container_by_branch
         id: test_running_container_by_branch
         run: echo "{running_container_count}={ $(sudo docker ps|grep branch-4|wc -l)}" >> $GITHUB_OUTPUT
+      - name: echo running_container_count
+        run: echo "steps.test_running_container_by_branch.outputs.running_container_count"
       - name: stop container if have running container
-        if: steps.test_running_container_by_branch.outputs.running_container_count > 0
+        if: steps.test_running_container_by_branch.outputs.running_container_count != "0"
         run: sudo docker ps|grep branch-4|awk '{print $1}'|xargs sudo docker stop
       - name: docker build
         run : sudo docker build --no-cache -t  ${{ github.ref_name }}:${{ github.sha }}  --build-arg IP=0.0.0.0 --build-arg PORT=80 .
