@@ -25,7 +25,7 @@ jobs:
       - name: ls $(pwd)
         run: ls $(pwd)
       - name: stop running container
-        run: sudo docker ps|grep ${{ github.ref_name }}|awk '{print $1}'|xargs sudo docker stop
+        run: $(sudo docker ps|grep branch-4) && $(sudo docker ps|grep branch-4|awk '{print $1}'|xargs sudo docker stop) || echo 'no running container'
       - name: docker build
         run : sudo docker build --no-cache -t  ${{ github.ref_name }}:${{ github.sha }}  --build-arg IP=0.0.0.0 --build-arg PORT=80 .
       - name: docker images
