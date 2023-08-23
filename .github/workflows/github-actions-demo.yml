@@ -5,6 +5,8 @@ on:
     branches:
       - 'main'
       - 'branch-**'
+env:
+  PORT: 4444
 jobs:
   BRANCH-4-CICD:
     runs-on: self-hosted
@@ -35,9 +37,9 @@ jobs:
       - name: docker images
         run: sudo docker images
       - name: docker run
-        run: sudo docker run -d -p 4444:80 ${{ github.ref_name }}:${{ github.sha }}
+        run: sudo docker run -d -p $PORT:80 ${{ github.ref_name }}:${{ github.sha }}
       - name: curl web
         run: |
           sleep 20
-          curl http://localhost:4444
+          curl http://localhost:$PORT
 
