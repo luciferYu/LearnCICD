@@ -27,7 +27,7 @@ jobs:
       - name: test running container_by_branch
         id: test_running_container_by_branch
         run: |
-          if [[ $(sudo docker ps|grep branch-4) ]]; then
+          if [[ $(sudo docker ps|grep branch-4|wc -l) ]]; then
             echo "running container"
             echo "::set-output name=running_container::true"
           else
