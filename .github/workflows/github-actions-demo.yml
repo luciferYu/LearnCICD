@@ -26,16 +26,10 @@ jobs:
         run: ls $(pwd)
       - name: test running container_by_branch
         id: test_running_container_by_branch
-        run: |
-          if [[ $(sudo docker ps|grep branch-4|wc -l) ]]; then
-            echo "running container"
-            echo "::set-output name=running_container::true"
-          else
-            echo "no running container"
-            echo "::set-output name=running_container::false"
-          fi
-      - name: display test_running_container_by_branch
-        run: echo "test_running_container_by_branch ${{ steps.test_running_container_by_branch.outputs.running_container }}"
+        run: echo "{running_container_count}={ $(sudo docker ps|grep branch-4|wc -l)}" >> $GITHUB_OUTPUT
+      - name: stop container if have running container
+        if: steps.test_running_container_by_branch.outputs.running_container_count > 0
+        run: sudo docker ps|grep branch-4|awk '{print $1}'|xargs sudo docker stop
       - name: docker build
         run : sudo docker build --no-cache -t  ${{ github.ref_name }}:${{ github.sha }}  --build-arg IP=0.0.0.0 --build-arg PORT=80 .
       - name: docker images
