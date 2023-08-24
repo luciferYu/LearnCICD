@@ -22,7 +22,7 @@ jobs:
         run: |
           ls ${{ github.workspace }}
       - run: echo "🍏 This job's status is ${{ job.status }}."
-      - name: echo pwd
+      - name: pwd
         run: pwd
       - name: ls $(pwd)
         run: ls $(pwd)
